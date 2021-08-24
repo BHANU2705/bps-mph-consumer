@@ -1,7 +1,6 @@
 package com.mph.core.consumer;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -45,11 +44,11 @@ public class ConsumerApp {
 				System.out.println("[Consumer: " + record.topic() + " Record Key " + record.key() + " Record Message "
 						+ record.value() + " : Processing Started");
 
-				try {
-					TimeUnit.SECONDS.sleep(timeTakenSeconds);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+//				try {
+//					TimeUnit.SECONDS.sleep(timeTakenSeconds);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
 
 				System.out.println("[Consumer: " + record.topic() + " Record Key " + record.key() + " Record Message "
 						+ record.value() + " : Processing Completed");
