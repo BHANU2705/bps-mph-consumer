@@ -10,9 +10,10 @@ import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import com.mph.core.commons.IKafkaConstants;
+import com.mph.core.commons.Payer;
 
 public class ConsumerFactory {
-	public static Consumer<Long, String> createConsumer() {
+	public static Consumer<Long, String> createConsumer(Payer topic) {
 		Properties props = new Properties();
 		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, IKafkaConstants.KAFKA_BROKERS);
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, IKafkaConstants.GROUP_ID_CONFIG);
@@ -23,7 +24,7 @@ public class ConsumerFactory {
 		props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, IKafkaConstants.OFFSET_RESET_EARLIER);
 
 		Consumer<Long, String> consumer = new KafkaConsumer<>(props);
-		consumer.subscribe(Collections.singletonList(IKafkaConstants.TOPIC_NAME));
+		consumer.subscribe(Collections.singletonList(topic.name()));
 		return consumer;
 	}
 }
