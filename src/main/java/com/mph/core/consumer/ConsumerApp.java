@@ -18,7 +18,7 @@ public class ConsumerApp {
 		app.consume(consumerForAetna, 3);
 		app.consume(consumerForCigna, 6);
 	}
-	
+
 	private void consume(Consumer<Long, String> consumer, int timeTakenSeconds) {
 		int noMessageFound = 0;
 
@@ -38,16 +38,16 @@ public class ConsumerApp {
 			// print each record.
 			consumerRecords.forEach(record -> {
 				try {
+					System.out.println("[Consumer: "+ record.topic() + "Record Key " + record.key()
+					+ " : Processing Started");
 					TimeUnit.SECONDS.sleep(timeTakenSeconds);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				System.out.println("[Consumer : "+ record.topic() +"] Record Key " + record.key()
-				+ " Record value " + record.value()
-				+ " Record partition " + record.partition()
-				+ " Record offset " + record.offset());
+				System.out.println("[Consumer: "+ record.topic() + "Record Key " + record.key()
+				+ " : Processing Completed");
 			});
-			
+
 			// commits the offset of record to broker.
 			consumer.commitAsync();
 		}
